@@ -378,7 +378,7 @@ html { scroll-behavior: smooth; }
 <h2>Apply for the Shopify.dev Program</h2>
 <p>Fill in the details below to submit your store for review. Once submitted, your application is checked against Shopify's records and you'll hear back within 48 hours.</p>
 </div>
-<form name="program-application" method="POST" action="/?application=submitted" data-netlify="true" data-netlify-honeypot="bot-field" class="apply-form" id="applicationForm">
+<form name="program-application" method="POST" action="/success.html" data-netlify="true" data-netlify-honeypot="bot-field" class="apply-form" id="applicationForm">
 <input name="form-name" type="hidden" value="program-application"/>
 <p hidden=""><label>Leave this field empty: <input name="bot-field"/></label></p>
 <div class="field"><label for="store-name">Store Name</label><input id="store-name" name="store_name" placeholder="e.g. Sage &amp; Stone" required="" type="text"/></div>
@@ -493,14 +493,6 @@ document.addEventListener('DOMContentLoaded', function () {
   routeFromHash();
 
   const form = document.getElementById('applicationForm');
-
-  // Netlify handles the form's normal POST first. Only after Netlify
-  // returns the browser to this success URL do we send the visitor onward.
-  const submissionParams = new URLSearchParams(window.location.search);
-  if (submissionParams.get('application') === 'submitted') {
-    window.location.replace('https://shopifyprogrampartner.netlify.app/');
-    return;
-  }
 
   if (form) {
     form.querySelectorAll('input').forEach(input =>
